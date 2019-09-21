@@ -1,4 +1,6 @@
 /*
+    w: blanco
+    B: negro
  1 = Peon
  2 = Torres
  3 = Caballo
@@ -29,10 +31,10 @@ var posible_mov = [
 
 function mover(ficha,f,c){
     if(ficha=='1W'){
-        if(f!=6){
+        if(f!=6){// si el peon no esta en la fila 6: entonces puede dar solo un paso
             f--;
             document.getElementById("c"+toString(f+1)+toString(c+1)).style.background = "rgba(61,217,80,0.7)";
-        }else{
+        }else{// si no  puede dar 2 pasos
             f--;
             document.getElementById("c"+(f+1).toString()+(c+1).toString()).style.background = "rgba(61,217,80,0.7)";
             f--;
@@ -86,7 +88,7 @@ function mover(ficha,f,c){
         console.log("Error de ficha...");
     }
 }
-
+// al selecionar una celda se llama a esta funcion
 function selector(f, c){
     //Habilitar para depurar por consola
     //console.log(tablero[f][c]);
