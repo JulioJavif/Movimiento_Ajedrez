@@ -1,0 +1,39 @@
+/*.section-principal{
+    background-image: url("../img/chess_2560x1600.jpg");
+    background-image: no-repeat center top ;
+}*/
+#tablero {
+  margin-top: 50px;
+  background: url(http://img.freepik.com/free-photo/wooden-texture_1160-686.jpg?size=338&amp;ext=jpg);
+  box-shadow: 0 10px 10px -6px rgba(0, 0, 0, .6);
+  border-radius: 3px;
+  border-collapse: collapse;
+  height: 400px;
+  width: 400px;
+  !position: absolute;
+  top: 30px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  !margin: auto;
+}
+
+#tablero div div {
+  color: #222;
+  float: left;
+  font-size: 36px;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, .6);
+  width: 50px;
+  height: 50px;
+  text-align: center;
+}
+
+#tablero div:nth-child(odd) div:nth-child(even),
+#tablero div:nth-child(even) div:nth-child(odd) {
+  background: rgba(0, 0, 0, .4);
+}
+
+#tablero div:nth-child(n+7) div {
+  color: #fff;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, .6);
+}

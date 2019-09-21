@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Ajedrez</title>
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <!--MY CSS -->
+  <link rel="stylesheet" href="css/mystyle.css" type="text/css">
+</head>
+<body>
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="black-text brand-logo">Juega Ajedrez</a>
+    </div>
+  </nav>
+  <div class="section no-pad-bot section-principal" id="index-banner">
+    <div class="container">
+      <!--<br><br>-->
+      <!--Contiene el título-->
+      <div class="container">
+        <h1 class="header center orange-text">Prueba tus movimientos</h1>
+      </div>
+      <!--Contiene el tablero-->
+      <div class="container">
+        <div class="container">
+            <div class="container" id="tablero">
+              <!--Fila 1-->
+              <div>
+                <div id="c11" onclick="selector(0,0)">&#9820;</div>
+                <div id="c12" onclick="selector(0,1)">&#9822;</div>
+                <div id="c13" onclick="selector(0,2)">&#9821;</div>
+                <div id="c14" onclick="selector(0,3)">&#9819;</div>
+                <div id="c15" onclick="selector(0,4)">&#9818;</div>
+                <div id="c16" onclick="selector(0,5)">&#9821;</div>
+                <div id="c17" onclick="selector(0,6)">&#9822;</div>
+                <div id="c18" onclick="selector(0,7)">&#9820;</div>
+              </div>
+              <!--Fila 2-->
+              <div>
+                <div id="c21" onclick="selector(1,0)">&#9823;</div>
+                <div id="c22" onclick="selector(1,1)">&#9823;</div>
+                <div id="c23" onclick="selector(1,2)">&#9823;</div>
+                <div id="c24" onclick="selector(1,3)">&#9823;</div>
+                <div id="c25" onclick="selector(1,4)">&#9823;</div>
+                <div id="c26" onclick="selector(1,5)">&#9823;</div>
+                <div id="c27" onclick="selector(1,6)">&#9823;</div>
+                <div id="c28" onclick="selector(1,7)">&#9823;</div>
+              </div>
+              <!--Fila 3-->
+              <div>
+                <div id="c31" onclick="selector(2,0)"></div>
+                <div id="c32" onclick="selector(2,1)"></div>
+                <div id="c33" onclick="selector(2,2)"></div>
+                <div id="c34" onclick="selector(2,3)"></div>
+                <div id="c35" onclick="selector(2,4)"></div>
+                <div id="c36" onclick="selector(2,5)"></div>
+                <div id="c37" onclick="selector(2,6)"></div>
+                <div id="c38" onclick="selector(2,7)"></div>
+              </div>
+              <!--Fila 4-->
+              <div>
+                <div id="c41" onclick="selector(3,0)"></div>
+                <div id="c42" onclick="selector(3,1)"></div>
+                <div id="c43" onclick="selector(3,2)"></div>
+                <div id="c44" onclick="selector(3,3)"></div>
+                <div id="c45" onclick="selector(3,4)"></div>
+                <div id="c46" onclick="selector(3,5)"></div>
+                <div id="c47" onclick="selector(3,6)"></div>
+                <div id="c48" onclick="selector(3,7)"></div>
+              </div>
+              <!--Fila 5-->
+              <div>
+                <div id="c51" onclick="selector(4,0)"></div>
+                <div id="c52" onclick="selector(4,1)"></div>
+                <div id="c53" onclick="selector(4,2)"></div>
+                <div id="c54" onclick="selector(4,3)"></div>
+                <div id="c55" onclick="selector(4,4)"></div>
+                <div id="c56" onclick="selector(4,5)"></div>
+                <div id="c57" onclick="selector(4,6)"></div>
+                <div id="c58" onclick="selector(4,7)"></div>
+              </div>
+              <!--Fila 6-->
+              <div>
+                <div id="c61" onclick="selector(5,0)"></div>
+                <div id="c62" onclick="selector(5,1)"></div>
+                <div id="c63" onclick="selector(5,2)"></div>
+                <div id="c64" onclick="selector(5,3)"></div>
+                <div id="c65" onclick="selector(5,4)"></div>
+                <div id="c66" onclick="selector(5,5)"></div>
+                <div id="c67" onclick="selector(5,6)"></div>
+                <div id="c68" onclick="selector(5,7)"></div>
+              </div>
+              <!--Fila 7-->
+              <div>
+                <div id="c71" onclick="selector(6,0)">&#9823;</div>
+                <div id="c72" onclick="selector(6,1)">&#9823;</div>
+                <div id="c73" onclick="selector(6,2)">&#9823;</div>
+                <div id="c74" onclick="selector(6,3)">&#9823;</div>
+                <div id="c75" onclick="selector(6,4)">&#9823;</div>
+                <div id="c76" onclick="selector(6,5)">&#9823;</div>
+                <div id="c77" onclick="selector(6,6)">&#9823;</div>
+                <div id="c78" onclick="selector(6,7)">&#9823;</div>
+              </div>
+              <!--Fila 8-->
+              <div>
+                <div id="c81" onclick="selector(7,0)">&#9820;</div>
+                <div id="c82" onclick="selector(7,1)">&#9822;</div>
+                <div id="c83" onclick="selector(7,2)">&#9821;</div>
+                <div id="c84" onclick="selector(7,3)">&#9819;</div>
+                <div id="c85" onclick="selector(7,4)">&#9818;</div>
+                <div id="c86" onclick="selector(7,5)">&#9821;</div>
+                <div id="c87" onclick="selector(7,6)">&#9822;</div>
+                <div id="c88" onclick="selector(7,7)">&#9820;</div>
+              </div>
+            </div>
+        </div>
+      </div>
+      <br><br>
+    </div>
+  </div>
+
+  <footer class="page-footer orange">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="black-text">Diseñado por:</h5>
+          <p class="black-text text-lighten-4">Alfredo Almarales <br>Julio Fuentes <br>© 2019</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/logic.js"></script>
+
+  </body>
+</html>
