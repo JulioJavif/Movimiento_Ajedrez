@@ -62,26 +62,43 @@ function mover(ficha,f,c){
             document.getElementById("c"+(h+1).toString()+(c+1).toString()).style.background = "rgba(61,217,80,0.7)";
         }
     }else if(ficha=='3W' || ficha=='3B'){
-        console.log(ficha);
         var fila=f, columna=c;
         fila-=2;
-        if((c+2)>8){
-            document.getElementById("c"+(fila+1).toString()+(c+2).toString()).style.background = "rgba(61,217,80,0.7)";
+        if(fila>=0 && fila<=7){
+            if(c+1<8){
+                document.getElementById("c"+(fila+1).toString()+(c+2).toString()).style.background = "rgba(61,217,80,0.7)";
+            }
+            if(c>-1){
+                document.getElementById("c"+(fila+1).toString()+(c).toString()).style.background = "rgba(61,217,80,0.7)";
+            }
         }
-        if(fila+1 >0){
-            document.getElementById("c"+(fila+1).toString()+(c).toString()).style.background = "rgba(61,217,80,0.7)";
+        fila=f;fila+=2;
+        if(fila>=0 && fila<=7){
+            if(c+1<8){
+                document.getElementById("c"+(fila+1).toString()+(c+2).toString()).style.background = "rgba(61,217,80,0.7)";
+            }
+            if(c>-1){
+                document.getElementById("c"+(fila+1).toString()+(c).toString()).style.background = "rgba(61,217,80,0.7)";
+            }            
         }
-        fila=f;
-        fila+=2;
-        /*if(){
-
-        }*/
-        
-        fila=f;
-        fila+=2;
-        document.getElementById("c"+(fila+1).toString()+(c+2).toString()).style.background = "rgba(61,217,80,0.7)";
-        document.getElementById("c"+(fila+1).toString()+(c).toString()).style.background = "rgba(61,217,80,0.7)";
-        console.log("c"+(fila+1).toString()+(c+2).toString());
+        columna-=2;
+        if(columna<=7 && columna>=0){
+            if(f>0){
+                document.getElementById("c"+(f).toString()+(columna+1).toString()).style.background = "rgba(61,217,80,0.7)";
+            }
+            if(f+1<8){
+                document.getElementById("c"+(f+2).toString()+(columna+1).toString()).style.background = "rgba(61,217,80,0.7)";
+            }
+        }
+        columna=c;columna+=2;
+        if(columna<=7 && columna>=0){
+            if(f>0){
+                document.getElementById("c"+(f).toString()+(columna+1).toString()).style.background = "rgba(61,217,80,0.7)";
+            }
+            if(f+1<8){
+                document.getElementById("c"+(f+2).toString()+(columna+1).toString()).style.background = "rgba(61,217,80,0.7)";
+            }
+        }
     }else{
         console.log("Error de ficha...");
     }
