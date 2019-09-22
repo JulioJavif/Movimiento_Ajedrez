@@ -10,14 +10,12 @@
   border-collapse: collapse;
   height: 400px;
   width: 400px;
-  !position: absolute;
   top: 30px;
   right: 0;
   bottom: 0;
   left: 0;
-  !margin: auto;
 }
-
+/*coloreando fichas negras */
 #tablero div div {
   color: #222;
   float: left;
@@ -28,11 +26,13 @@
   text-align: center;
 }
 
+/*coloreando las casillas negras */
 #tablero div:nth-child(odd) div:nth-child(even),
 #tablero div:nth-child(even) div:nth-child(odd) {
   background: rgba(0, 0, 0, .4);
 }
 
+/*coloreando las fichas blancas */
 #tablero div:nth-child(n+7) div {
   color: #fff;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, .6);
