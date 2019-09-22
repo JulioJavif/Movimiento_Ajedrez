@@ -31,6 +31,82 @@ var tablero = [
 
 var CasillasSeleccionadas;
 
+//Movimiento de la Torre
+function movimientoTorre(f,c){
+    for(var v=(c+1); v<8; v++){
+        document.getElementById("c"+(f+1).toString()+(v+1).toString()).style.background = "rgba(61,217,80,0.7)";
+    }
+    // movimientos de la torre ala izquierda
+    for(var v=(c-1); v>-1; v--){
+        document.getElementById("c"+(f+1).toString()+(v+1).toString()).style.background = "rgba(61,217,80,0.7)";
+    }
+    for(var h=(f+1); h<8; h++){
+        document.getElementById("c"+(h+1).toString()+(c+1).toString()).style.background = "rgba(61,217,80,0.7)";
+    }
+    for(var h=(f-1); h>-1; h--){
+        document.getElementById("c"+(h+1).toString()+(c+1).toString()).style.background = "rgba(61,217,80,0.7)";
+    }
+}
+function  movimientoAlfil(f,c){
+    var fila=f, columnaDer=c,columnaIzq=c;
+        
+    // movimiento del alfil a la derrecha y arriba
+        for(var i=(fila-1);i>-1;i--){
+            columnaDer++;
+            if(columnaDer<8){
+                document.getElementById("c"+(i+1).toString()+(columnaDer+1).toString()).style.background = "rgba(61,217,80,0.7)";
+            }else{
+                i=-1;
+            }                           
+        }
+  // movimiento del alfil a la izquierda y arriba
+ 
+   for(var i=(fila-1);i>-1;i--){
+      columnaIzq--;
+       if(columnaIzq>-1){
+        document.getElementById("c"+(i+1).toString()+(columnaIzq+1).toString()).style.background = "rgba(61,217,80,0.7)";
+       }else{
+        i=-1;
+       }                           
+  }
+  columnaDer=columnaIzq=c;
+   // movimiento del alfil a la Derecha y abajo
+ 
+     for(var i=(fila+1);i<8;i++){
+     columnaDer++;
+      if(columnaDer<8){
+       document.getElementById("c"+(i+1).toString()+(columnaDer+1).toString()).style.background = "rgba(61,217,80,0.7)";
+      }else{
+       i=8;
+      }                           
+    }
+  // movimiento del alfil a la izquierda y abajo
+ 
+  for(var i=(fila+1);i<8;i++){
+    columnaIzq--;
+     if(columnaIzq>-1){
+      document.getElementById("c"+(i+1).toString()+(columnaIzq+1).toString()).style.background = "rgba(61,217,80,0.7)";
+     }else{
+      i=8;
+     }                           
+    }
+}
+
+function movimientoRey(fila,columna,minfila,maxfila,mincol,maxcol){
+    for(var i=minfila;i<maxfila;i++){         
+        for(var k=mincol;k<maxcol;k++){
+            if(i!=fila || k!=columna){                      
+                document.getElementById("c"+(i+1).toString()+(k+1).toString()).style.background = "rgba(61,217,80,0.7)";
+            }
+            
+        }            
+    }
+}
+
+
+function limpiarTabla(f,c){
+
+}
 function mover(ficha,f,c){
 
     if(ficha=='1W'){
@@ -130,80 +206,7 @@ function mover(ficha,f,c){
     }
   
 }
-function  movimientoAlfil(f,c){
-    var fila=f, columnaDer=c,columnaIzq=c;
-        
-    // movimiento del alfil a la derrecha y arriba
-        for(var i=(fila-1);i>-1;i--){
-            columnaDer++;
-            if(columnaDer<8){
-                document.getElementById("c"+(i+1).toString()+(columnaDer+1).toString()).style.background = "rgba(61,217,80,0.7)";
-            }else{
-                i=-1;
-            }                           
-        }
-  // movimiento del alfil a la izquierda y arriba
- 
-   for(var i=(fila-1);i>-1;i--){
-      columnaIzq--;
-       if(columnaIzq>-1){
-        document.getElementById("c"+(i+1).toString()+(columnaIzq+1).toString()).style.background = "rgba(61,217,80,0.7)";
-       }else{
-        i=-1;
-       }                           
-  }
-  columnaDer=columnaIzq=c;
-   // movimiento del alfil a la Derecha y abajo
- 
-     for(var i=(fila+1);i<8;i++){
-     columnaDer++;
-      if(columnaDer<8){
-       document.getElementById("c"+(i+1).toString()+(columnaDer+1).toString()).style.background = "rgba(61,217,80,0.7)";
-      }else{
-       i=8;
-      }                           
-    }
-  // movimiento del alfil a la izquierda y abajo
- 
-  for(var i=(fila+1);i<8;i++){
-    columnaIzq--;
-     if(columnaIzq>-1){
-      document.getElementById("c"+(i+1).toString()+(columnaIzq+1).toString()).style.background = "rgba(61,217,80,0.7)";
-     }else{
-      i=8;
-     }                           
-}
-}
-function movimientoTorre(f,c){
-    for(var v=(c+1); v<8; v++){
-        document.getElementById("c"+(f+1).toString()+(v+1).toString()).style.background = "rgba(61,217,80,0.7)";
-    }
-    // movimientos de la torre ala izquierda
-    for(var v=(c-1); v>-1; v--){
-        document.getElementById("c"+(f+1).toString()+(v+1).toString()).style.background = "rgba(61,217,80,0.7)";
-    }
-    for(var h=(f+1); h<8; h++){
-        document.getElementById("c"+(h+1).toString()+(c+1).toString()).style.background = "rgba(61,217,80,0.7)";
-    }
-    for(var h=(f-1); h>-1; h--){
-        document.getElementById("c"+(h+1).toString()+(c+1).toString()).style.background = "rgba(61,217,80,0.7)";
-    }
-}
-function movimientoRey(fila,columna,minfila,maxfila,mincol,maxcol){
-    for(var i=minfila;i<maxfila;i++){         
-        for(var k=mincol;k<maxcol;k++){
-            if(i!=fila || k!=columna){                      
-                document.getElementById("c"+(i+1).toString()+(k+1).toString()).style.background = "rgba(61,217,80,0.7)";
-            }
-            
-        }            
-    }
-}
 
-
-function limpiarTabla(f,c){
-
-}
 // al selecionar una celda se llama a esta funcion
 function selector(f, c){
     //Habilitar para depurar por consola
