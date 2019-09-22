@@ -31,116 +31,21 @@ var tablero = [
 
 var CasillasSeleccionadas;
 
-function mover(ficha,f,c){
-
-    if(ficha=='1W'){
-        if(f!=6){// si el peon no esta en la fila 6: entonces puede dar solo un paso
-            f--;
-            document.getElementById("c"+(f+1)+(c+1)).style.background = "rgba(61,217,80,0.7)";
-        }else{// si no  puede dar 2 pasos
-            f--;
-            var celda="c"+(f+1)+(c+1);
-            CasillasSeleccionadas.push(celda);
-            document.getElementById("c"+(f+1)+(c+1)).style.background = "rgba(61,217,80,0.7)";
-            f--;
-            var celda="c"+(f+1)+(c+1);
-            CasillasSeleccionadas.push(celda);
-            document.getElementById("c"+(f+1)+(c+1)).style.background = "rgba(61,217,80,0.7)";
-        }
-    }else if(ficha=='1B'){
-        if(f!=1){
-            f++;
-            document.getElementById("c"+(f+1)+(c+1)).style.background = "rgba(61,217,80,0.7)";
-           // CasillasSeleccionadas.push();
-        }else{
-            f++;
-            document.getElementById("c"+(f+1)+(c+1)).style.background = "rgba(61,217,80,0.7)";
-            f++;
-            document.getElementById("c"+(f+1)+(c+1)).style.background = "rgba(61,217,80,0.7)";
-        }
-    
-    // -------selecionando la torre ------
-    }else if(ficha=='2W' || ficha=='2B'){
-         movimientoTorre(f,c);
-     // -----  selecionando al Caballo  -------------
-    }else if(ficha=='3W' || ficha=='3B'){
-        var fila=f, columna=c;
-        fila-=2;
-        if(fila>=0 && fila<=7){
-            if(c+1<8){
-                document.getElementById("c"+(fila+1).toString()+(c+2).toString()).style.background = "rgba(61,217,80,0.7)";
-            }
-            if(c>-1){
-                document.getElementById("c"+(fila+1).toString()+(c).toString()).style.background = "rgba(61,217,80,0.7)";
-            }
-        }
-        fila=f;fila+=2;
-        if(fila>=0 && fila<=7){
-            if(c+1<8){
-                document.getElementById("c"+(fila+1).toString()+(c+2).toString()).style.background = "rgba(61,217,80,0.7)";
-            }
-            if(c>-1){
-                document.getElementById("c"+(fila+1).toString()+(c).toString()).style.background = "rgba(61,217,80,0.7)";
-            }            
-        }
-        columna-=2;
-        if(columna<=7 && columna>=0){
-            if(f>0){
-                document.getElementById("c"+(f).toString()+(columna+1).toString()).style.background = "rgba(61,217,80,0.7)";
-            }
-            if(f+1<8){
-                document.getElementById("c"+(f+2).toString()+(columna+1).toString()).style.background = "rgba(61,217,80,0.7)";
-            }
-        }
-        columna=c;columna+=2;
-        if(columna<=7 && columna>=0){
-            if(f>0){
-                document.getElementById("c"+(f).toString()+(columna+1).toString()).style.background = "rgba(61,217,80,0.7)";
-            }
-            if(f+1<8){
-                document.getElementById("c"+(f+2).toString()+(columna+1).toString()).style.background = "rgba(61,217,80,0.7)";
-            }
-        }
-  // -----  selecionando al alfil  -------------
-    }else if(ficha=='4W' || ficha=='4B'){
-        movimientoAlfil(f,c); 
-   // -----  selecionando a la reina  ------------- 
-    }else if(ficha=='5W' || ficha=='5B'){
-        movimientoAlfil(f,c); 
-        movimientoTorre(f,c);
- // -----  selecionando a el rey  ------------- 
-    }else if(ficha=='6W' || ficha=='6B'){
-        
-    var fila=f, columna=c;
-       if((fila-1)>-1){// si la fila de la ficha No es la primera
-     
-            if((columna+1)==8){// si la columna de la ficha es la ultima
-                movimientoRey(fila,columna,fila-1,fila+2,columna-1,columna+1);
-          
-              }else  if((columna-1)==-1){//si la columna de la ficha es la primera
-               movimientoRey(fila,columna,fila-1,fila+2,columna,columna+2);
-        
-              }else if((columna+1)<8){// si la columna de la ficha No es la ultima
-                movimientoRey(fila,columna,fila-1,fila+2,columna-1,columna+2);   
-               }
-              
-             
-        }else if((fila-1)==-1){// si la fila de la ficha es la primera
-            if((columna+1)==8){// si la columna de la ficha es la ultima
-                movimientoRey(fila,columna,fila,fila+2,columna-1,columna+1);
-          
-              }else  if((columna-1)==-1){//si la columna de la ficha es la primera
-               movimientoRey(fila,columna,fila,fila+2,columna,columna+2);
-        
-              }else if((columna+1)<8){// si la columna de la ficha No es la ultima
-                movimientoRey(fila,columna,fila,fila+2,columna-1,columna+2);   
-               }
-
-         }
-     }else{
-        console.log("Error de ficha...");
+//Movimiento de la Torre
+function movimientoTorre(f,c){
+    for(var v=(c+1); v<8; v++){
+        document.getElementById("c"+(f+1).toString()+(v+1).toString()).style.background = "rgba(61,217,80,0.7)";
     }
-  
+    // movimientos de la torre ala izquierda
+    for(var v=(c-1); v>-1; v--){
+        document.getElementById("c"+(f+1).toString()+(v+1).toString()).style.background = "rgba(61,217,80,0.7)";
+    }
+    for(var h=(f+1); h<8; h++){
+        document.getElementById("c"+(h+1).toString()+(c+1).toString()).style.background = "rgba(61,217,80,0.7)";
+    }
+    for(var h=(f-1); h>-1; h--){
+        document.getElementById("c"+(h+1).toString()+(c+1).toString()).style.background = "rgba(61,217,80,0.7)";
+    }
 }
 function  movimientoAlfil(f,c){
     var fila=f, columnaDer=c,columnaIzq=c;
@@ -184,23 +89,9 @@ function  movimientoAlfil(f,c){
      }else{
       i=8;
      }                           
-}
-}
-function movimientoTorre(f,c){
-    for(var v=(c+1); v<8; v++){
-        document.getElementById("c"+(f+1).toString()+(v+1).toString()).style.background = "rgba(61,217,80,0.7)";
-    }
-    // movimientos de la torre ala izquierda
-    for(var v=(c-1); v>-1; v--){
-        document.getElementById("c"+(f+1).toString()+(v+1).toString()).style.background = "rgba(61,217,80,0.7)";
-    }
-    for(var h=(f+1); h<8; h++){
-        document.getElementById("c"+(h+1).toString()+(c+1).toString()).style.background = "rgba(61,217,80,0.7)";
-    }
-    for(var h=(f-1); h>-1; h--){
-        document.getElementById("c"+(h+1).toString()+(c+1).toString()).style.background = "rgba(61,217,80,0.7)";
     }
 }
+//Movimiento del rey posible
 function movimientoRey(fila,columna,minfila,maxfila,mincol,maxcol){
     for(var i=minfila;i<maxfila;i++){         
         for(var k=mincol;k<maxcol;k++){
@@ -211,11 +102,120 @@ function movimientoRey(fila,columna,minfila,maxfila,mincol,maxcol){
         }            
     }
 }
-
+//Movimiento posible de caballo
+function movimientoCaballo( f, c){
+    var fila=f, columna=c;
+        fila-=2;
+        if(fila>=0 && fila<=7){
+            if(c+1<8){
+                document.getElementById("c"+(fila+1).toString()+(c+2).toString()).style.background = "rgba(61,217,80,0.7)";
+            }
+            if(c>-1){
+                document.getElementById("c"+(fila+1).toString()+(c).toString()).style.background = "rgba(61,217,80,0.7)";
+            }
+        }
+        fila=f;fila+=2;
+        if(fila>=0 && fila<=7){
+            if(c+1<8){
+                document.getElementById("c"+(fila+1).toString()+(c+2).toString()).style.background = "rgba(61,217,80,0.7)";
+            }
+            if(c>-1){
+                document.getElementById("c"+(fila+1).toString()+(c).toString()).style.background = "rgba(61,217,80,0.7)";
+            }            
+        }
+        columna-=2;
+        if(columna<=7 && columna>=0){
+            if(f>0){
+                document.getElementById("c"+(f).toString()+(columna+1).toString()).style.background = "rgba(61,217,80,0.7)";
+            }
+            if(f+1<8){
+                document.getElementById("c"+(f+2).toString()+(columna+1).toString()).style.background = "rgba(61,217,80,0.7)";
+            }
+        }
+        columna=c;columna+=2;
+        if(columna<=7 && columna>=0){
+            if(f>0){
+                document.getElementById("c"+(f).toString()+(columna+1).toString()).style.background = "rgba(61,217,80,0.7)";
+            }
+            if(f+1<8){
+                document.getElementById("c"+(f+2).toString()+(columna+1).toString()).style.background = "rgba(61,217,80,0.7)";
+            }
+        }
+}
 
 function limpiarTabla(f,c){
 
 }
+function mover(ficha,f,c){
+
+    if(ficha=='1W'){
+        if(f!=6){// si el peon no esta en la fila 6: entonces puede dar solo un paso
+            f--;
+            var celda="c"+(f+1)+(c+1);
+            document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
+        }else{// si no  puede dar 2 pasos
+            f--;
+            var celda="c"+(f+1)+(c+1);
+            document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
+            f--;
+            var celda="c"+(f+1)+(c+1);
+            document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
+        }
+    }else if(ficha=='1B'){
+        if(f!=1){
+            f++;
+            var celda="c"+(f+1)+(c+1);
+            document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
+           //  CasillasSeleccionadas.push(celda);
+        }else{
+            f++;
+            var celda="c"+(f+1)+(c+1);
+            document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
+           //CasillasSeleccionadas.push(celda);
+            f++;
+            var celda="c"+(f+1)+(c+1);
+            document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
+           // CasillasSeleccionadas.push(celda);
+        }
+    // -------selecionando la torre ------
+    }else if(ficha=='2W' || ficha=='2B'){
+         movimientoTorre(f,c);
+     // -----  selecionando al Caballo  -------------
+    }else if(ficha=='3W' || ficha=='3B'){
+        movimientoCaballo( f, c);
+  // -----  selecionando al alfil  -------------
+    }else if(ficha=='4W' || ficha=='4B'){
+        movimientoAlfil(f,c); 
+   // -----  selecionando a la reina  ------------- 
+    }else if(ficha=='5W' || ficha=='5B'){
+        movimientoAlfil(f,c); 
+        movimientoTorre(f,c);
+ // -----  selecionando a el rey  ------------- 
+    }else if(ficha=='6W' || ficha=='6B'){
+    var fila=f, columna=c;
+       if((fila-1)>-1){// si la fila de la ficha No es la primera
+            if((columna+1)==8){// si la columna de la ficha es la ultima
+                movimientoRey(fila,columna,fila-1,fila+2,columna-1,columna+1);
+            }else  if((columna-1)==-1){//si la columna de la ficha es la primera
+               movimientoRey(fila,columna,fila-1,fila+2,columna,columna+2);
+            }else if((columna+1)<8){// si la columna de la ficha No es la ultima
+                movimientoRey(fila,columna,fila-1,fila+2,columna-1,columna+2);   
+            }     
+        }else if((fila-1)==-1){// si la fila de la ficha es la primera
+            if((columna+1)==8){// si la columna de la ficha es la ultima
+                movimientoRey(fila,columna,fila,fila+2,columna-1,columna+1);
+            }else  if((columna-1)==-1){//si la columna de la ficha es la primera
+                movimientoRey(fila,columna,fila,fila+2,columna,columna+2);
+            }else if((columna+1)<8){// si la columna de la ficha No es la ultima
+                movimientoRey(fila,columna,fila,fila+2,columna-1,columna+2);
+            }
+        }
+     }else{
+        console.log("Error de ficha...");
+    }
+  
+}
+
 // al selecionar una celda se llama a esta funcion
 function selector(f, c){
     //Habilitar para depurar por consola
