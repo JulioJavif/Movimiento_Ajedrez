@@ -56,7 +56,6 @@ function mover(ficha,f,c){
             f++;
             document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
         }
-    
     // -------selecionando la torre ------
     }else if(ficha=='2W' || ficha=='2B'){
          movimientoTorre(f,c);
@@ -108,33 +107,24 @@ function mover(ficha,f,c){
         movimientoTorre(f,c);
  // -----  selecionando a el rey  ------------- 
     }else if(ficha=='6W' || ficha=='6B'){
-        
     var fila=f, columna=c;
        if((fila-1)>-1){// si la fila de la ficha No es la primera
-     
             if((columna+1)==8){// si la columna de la ficha es la ultima
                 movimientoRey(fila,columna,fila-1,fila+2,columna-1,columna+1);
-          
-              }else  if((columna-1)==-1){//si la columna de la ficha es la primera
+            }else  if((columna-1)==-1){//si la columna de la ficha es la primera
                movimientoRey(fila,columna,fila-1,fila+2,columna,columna+2);
-        
-              }else if((columna+1)<8){// si la columna de la ficha No es la ultima
+            }else if((columna+1)<8){// si la columna de la ficha No es la ultima
                 movimientoRey(fila,columna,fila-1,fila+2,columna-1,columna+2);   
-               }
-              
-             
+            }     
         }else if((fila-1)==-1){// si la fila de la ficha es la primera
             if((columna+1)==8){// si la columna de la ficha es la ultima
                 movimientoRey(fila,columna,fila,fila+2,columna-1,columna+1);
-          
-              }else  if((columna-1)==-1){//si la columna de la ficha es la primera
-               movimientoRey(fila,columna,fila,fila+2,columna,columna+2);
-        
-              }else if((columna+1)<8){// si la columna de la ficha No es la ultima
-                movimientoRey(fila,columna,fila,fila+2,columna-1,columna+2);   
-               }
-
-         }
+            }else  if((columna-1)==-1){//si la columna de la ficha es la primera
+                movimientoRey(fila,columna,fila,fila+2,columna,columna+2);
+            }else if((columna+1)<8){// si la columna de la ficha No es la ultima
+                movimientoRey(fila,columna,fila,fila+2,columna-1,columna+2);
+            }
+        }
      }else{
         console.log("Error de ficha...");
     }
