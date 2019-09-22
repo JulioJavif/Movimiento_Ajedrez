@@ -36,25 +36,27 @@ function mover(ficha,f,c){
     if(ficha=='1W'){
         if(f!=6){// si el peon no esta en la fila 6: entonces puede dar solo un paso
             f--;
-            document.getElementById("c"+toString(f+1)+toString(c+1)).style.background = "rgba(61,217,80,0.7)";
+            document.getElementById("c"+(f+1)+(c+1)).style.background = "rgba(61,217,80,0.7)";
         }else{// si no  puede dar 2 pasos
             f--;
-            document.getElementById("c"+(f+1).toString()+(c+1).toString()).style.background = "rgba(61,217,80,0.7)";
+            var celda="c"+(f+1)+(c+1);
+            CasillasSeleccionadas.push(celda);
+            document.getElementById("c"+(f+1)+(c+1)).style.background = "rgba(61,217,80,0.7)";
             f--;
-            document.getElementById("c"+(f+1).toString()+(c+1).toString()).style.background = "rgba(61,217,80,0.7)";
+            var celda="c"+(f+1)+(c+1);
+            CasillasSeleccionadas.push(celda);
+            document.getElementById("c"+(f+1)+(c+1)).style.background = "rgba(61,217,80,0.7)";
         }
     }else if(ficha=='1B'){
         if(f!=1){
             f++;
-            var celda="c"+toString(f+1)+toString(c+1);
-            document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
+            document.getElementById("c"+(f+1)+(c+1)).style.background = "rgba(61,217,80,0.7)";
            // CasillasSeleccionadas.push();
         }else{
             f++;
-            var celda="c"+toString(f+1)+toString(c+1);
-            document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
+            document.getElementById("c"+(f+1)+(c+1)).style.background = "rgba(61,217,80,0.7)";
             f++;
-            document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
+            document.getElementById("c"+(f+1)+(c+1)).style.background = "rgba(61,217,80,0.7)";
         }
     
     // -------selecionando la torre ------
