@@ -9,12 +9,12 @@
  6 = Rey
 */
 var tablero = [
-    [ '2B', '3B', '4B', '5B', '6B', '4B', '3B', '2B'],
+    [ '2B', '3B', '4B',0, '6B', '4B', '3B', '2B'],
     [ '1B', '1B', '1B', '1B', '1B', '1B', '1B', '1B'],
-    [ 0, 0, 0, 0, 0, 0, 0, 0],
-    [ 0, 0, 0, 0, 0, 0, 0, 0],
-    [ 0, 0, , 0, 0, 0, 0, 0],
-    [ 0, 0, '1B', 0, 0, 0, 0, 0],
+    [ 0, 0, '6W', 0, 0, 0, 0, 0],
+    [ 0, 0, 0, '2B', 0, '3B', 0, '5W'],
+    [ 0, 0, 0, '4B', '6W', 0, 0, 0],
+    [ 0, 0, '3W', 0, 0, 0, 0, 0],
     [ '1W', '1W', '1W', '1W', '1W', '1W', '1W', '1W'],
     [ '2W', '3W', '4W', '5W', '6W', '4W', '3W', '2W']
 ];
@@ -22,33 +22,63 @@ var tablero = [
 
 var CasillasSeleccionadas=[];
 
+function DetectarFichasEnemigas(TipoFicha,celda,fila,columna){
+    var ficha;
+    ficha=tablero[fila][columna];
+    if(ficha!=0){// si hay una ficha
+        if(ficha.charAt(1)!=TipoFicha.charAt(1)){// si la ficha es enemiga
+            document.getElementById(celda).style.background = "rgba(255,0,0,0.7)";// pinto rojo
+            CasillasSeleccionadas.push(celda);
+            return 1;
+        }else{ // si la ficha es amiga
+            return 1;
+
+        }
+       
+    }else{// si no hay una ficha
+        document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";// pinto verde la celda
+        CasillasSeleccionadas.push(celda);
+    }
+}
 //Movimiento de la Torre
-function movimientoTorre(f,c){
+function movimientoTorre(ficha,f,c){
+    // torre a la derecha 
     for(var v=(c+1); v<8; v++){
         var celda="c"+(f+1)+(v+1);
-        document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
-        CasillasSeleccionadas.push(celda);
+       if(DetectarFichasEnemigas(ficha,celda,f,v)==1){
+           v=8;
+       }
+        
+        
     }
     // movimientos de la torre ala izquierda
     for(var v=(c-1); v>-1; v--){
         var celda="c"+(f+1)+(v+1);
-        document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
-        CasillasSeleccionadas.push(celda);  
+        if(DetectarFichasEnemigas(ficha,celda,f,v)==1){
+           v=-1;
+        }
+        
     
     }
+    // torre hacia abajo
     for(var h=(f+1); h<8; h++){
         var celda="c"+(h+1)+(c+1);
-        document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
-        CasillasSeleccionadas.push(celda);   
+        if(DetectarFichasEnemigas(ficha,celda,h,c)==1){
+            h=8;
+        }
+       
     }
+    // torre hacia arriba
     for(var h=(f-1); h>-1; h--){
         var celda="c"+(h+1)+(c+1);
-        document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
-        CasillasSeleccionadas.push(celda);
+        if(DetectarFichasEnemigas(ficha,celda,h,c)==1){
+              h=-1;
+        }
+        
     }
 }
 
-function  movimientoAlfil(f,c){
+function  movimientoAlfil(ficha,f,c){
     var fila=f, columnaDer=c,columnaIzq=c;
         
     // movimiento del alfil a la derrecha y arriba
@@ -56,8 +86,9 @@ function  movimientoAlfil(f,c){
             columnaDer++;
             if(columnaDer<8){
                 var celda="c"+(i+1)+(columnaDer+1);
-                document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
-                CasillasSeleccionadas.push(celda);
+                if(DetectarFichasEnemigas(ficha,celda,i,columnaDer)==1){
+                     i=-1;
+                }             
             }else{
                 i=-1;
             }                           
@@ -68,8 +99,9 @@ function  movimientoAlfil(f,c){
       columnaIzq--;
        if(columnaIzq>-1){
         var celda="c"+(i+1)+(columnaIzq+1);
-        document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
-        CasillasSeleccionadas.push(celda);
+        if(DetectarFichasEnemigas(ficha,celda,i,columnaIzq)==1){
+            i=-1;
+       } 
     }else{ i=-1;}                           
   }
   columnaDer=columnaIzq=c;
@@ -79,9 +111,10 @@ function  movimientoAlfil(f,c){
      columnaDer++;
       if(columnaDer<8){
         var celda="c"+(i+1)+(columnaDer+1); 
-       document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
-       CasillasSeleccionadas.push(celda);
-    }else{
+        if(DetectarFichasEnemigas(ficha,celda,i,columnaDer)==1){
+            i=8;
+       } 
+     }else{
        i=8;
       }                           
     }
@@ -91,8 +124,9 @@ function  movimientoAlfil(f,c){
     columnaIzq--;
      if(columnaIzq>-1){
      var celda="c"+(i+1)+(columnaIzq+1);
-     document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
-     CasillasSeleccionadas.push(celda);
+     if(DetectarFichasEnemigas(ficha,celda,i,columnaIzq)==1){
+        i=8;
+      } 
     }else{
       i=8;
      }                           
@@ -100,73 +134,80 @@ function  movimientoAlfil(f,c){
 }
 
 //Movimiento del rey posible
-function movimientoRey(fila,columna,minfila,maxfila,mincol,maxcol){
+function movimientoRey(ficha,fila,columna,minfila,maxfila,mincol,maxcol,numMax){
     for(var i=minfila;i<maxfila;i++){         
         for(var k=mincol;k<maxcol;k++){
             if(i!=fila || k!=columna){     
                 var celda="c"+(i+1)+(k+1);
-                document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
-                CasillasSeleccionadas.push(celda);                               
+                DetectarFichasEnemigas(ficha,celda,i,k);                                         
             }
             
         }            
     }
 }
+
+function DetectarFichasEnemigasCaballo(ficha,celda,fila,columna){
+    var fichaPresa=[];
+    //  alert(fila);
+    //  alert(columna);
+    alert(tablero[fila][columna]);
+    // alert(fichaPresa.charAt(1));
+    // alert(fichaPresa.charAt(2));
+    // if(celda!=0){// si hay una ficha
+    //     if(ficha.charAt(1)!=fichaPresa.charAt(1)){// si la ficha es enemiga
+    //         document.getElementById(celda).style.background = "rgba(255,0,0,0.7)";// pinto rojo
+    //         CasillasSeleccionadas.push(celda);
+    //     }
+
+    // }else{// si no hay una ficha
+    //     document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";// pinto verde la celda
+    //     CasillasSeleccionadas.push(celda);
+    // }
+}
 //Movimiento posible de caballo
-function movimientoCaballo( f, c){
+function movimientoCaballo(ficha,f, c){
     var fila=f, columna=c;
-        fila-=2;
+        fila-=2;//Caballo hacia arriba largo
         if(fila>=0 && fila<=7){
-            if(c+1<8){
+            if(c+1<8){//  derecha
                 var celda="c"+(fila+1)+(c+2);
-                document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
-                CasillasSeleccionadas.push(celda);
+                DetectarFichasEnemigasCaballo(ficha,celda,fila,c);
+                
             }
-            if(c>-1){
-                var celda="c"+(fila+1)+(c);
-                document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
-                CasillasSeleccionadas.push(celda);
-            }
+            // if(c>-1){// izquierda
+            //     var celda="c"+(fila+1)+(c);
+            //     DetectarFichasEnemigasCaballo(ficha,celda);
+
+            // }
         }
-        fila=f;fila+=2;
-        if(fila>=0 && fila<=7){
-            if(c+1<8){
-                var celda="c"+(fila+1)+(c+2);
-                document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
-                CasillasSeleccionadas.push(celda);
-            }
-            if(c>-1){
-                var celda="c"+(fila+1)+(c);
-                document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
-                CasillasSeleccionadas.push(celda);         
-            }            
-        }
-        columna-=2;
-        if(columna<=7 && columna>=0){
-            if(f>0){
-                var celda="c"+(f)+(columna+1);
-                document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
-                CasillasSeleccionadas.push(celda);
-            }
-            if(f+1<8){
-                var celda="c"+(f+2)+(columna+1);
-                document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
-                CasillasSeleccionadas.push(celda); 
-            }
-        }
-        columna=c;columna+=2;
-        if(columna<=7 && columna>=0){
-            if(f>0){
-                var celda="c"+(f)+(columna+1);
-                document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
-                CasillasSeleccionadas.push(celda);              
-            }
-            if(f+1<8){
-                var celda="c"+(f+2)+(columna+1);
-                document.getElementById("c"+(f+2).toString()+(columna+1).toString()).style.background = "rgba(61,217,80,0.7)";
-                CasillasSeleccionadas.push(celda);
-            }
-        }
+        // fila=f;fila+=2;//Caballo hacia abajo largo
+        // if(fila>=0 && fila<=7){
+        //     if(c+1<8){//derecha
+        //         var celda="c"+(fila+1)+(c+2);
+        //         DetectarFichasEnemigasCaballo(ficha,celda);
+        //     }
+        //     if(c>-1){// izquierda
+        //         var celda="c"+(fila+1)+(c);
+        //         DetectarFichasEnemigasCaballo(ficha,celda);            }            
+        // }
+        // columna-=2;//Caballo hacia la izquierda
+        // if(columna<=7 && columna>=0){
+        //     if(f>0){//arriba
+        //         var celda="c"+(f)+(columna+1);
+        //         DetectarFichasEnemigasCaballo(ficha,celda);            }
+        //     if(f+1<8){// abajo
+        //         var celda="c"+(f+2)+(columna+1);
+        //         DetectarFichasEnemigasCaballo(ficha,celda);            }
+        // }
+        // columna=c;columna+=2;//hacia la derecha 
+        // if(columna<=7 && columna>=0){
+        //     if(f>0){// arriba
+        //         var celda="c"+(f)+(columna+1);
+        //         DetectarFichasEnemigasCaballo(ficha,celda);            }
+        //     if(f+1<8){//
+        //         var celda="c"+(f+2)+(columna+1);
+        //         DetectarFichasEnemigasCaballo(ficha,celda);            }
+        // }
 }
 
 function DeselecionarCeldas(){
@@ -235,43 +276,43 @@ function mover(ficha,f,c){
         
     // -------selecionando la torre ------
     }else if(ficha=='2W' || ficha=='2B'){
-         movimientoTorre(f,c);
+         movimientoTorre(ficha,f,c);
      // -----  selecionando al Caballo  -------------
     }else if(ficha=='3W' || ficha=='3B'){
-        movimientoCaballo( f, c);
+        movimientoCaballo(ficha,f, c);
   // -----  selecionando al alfil  -------------
     }else if(ficha=='4W' || ficha=='4B'){
-        movimientoAlfil(f,c); 
+        movimientoAlfil(ficha,f,c); 
    // -----  selecionando a la reina  ------------- 
     }else if(ficha=='5W' || ficha=='5B'){
-        movimientoAlfil(f,c); 
-        movimientoTorre(f,c);
+        movimientoAlfil(ficha,f,c); 
+        movimientoTorre(ficha,f,c);
  // -----  selecionando a el rey  ------------- 
     }else if(ficha=='6W' || ficha=='6B'){
     var fila=f, columna=c;
      if((fila+1)==8){// si la fila de la ficha es la ultima
         if((columna+1)==8){// si la columna de la ficha es la ultima
-            movimientoRey(fila,columna,fila-1,fila+1,columna-1,columna+1);
+            movimientoRey(ficha,fila,columna,fila-1,fila+1,columna-1,columna+1);
         }else  if((columna-1)==-1){//si la columna de la ficha es la primera
-           movimientoRey(fila,columna,fila-1,fila+1,columna,columna+2);
+           movimientoRey(ficha,fila,columna,fila-1,fila+1,columna,columna+2);
         }else if((columna+1)<8){// si la columna de la ficha No es la ultima
-            movimientoRey(fila,columna,fila-1,fila+1,columna-1,columna+2);   
+            movimientoRey(ficha,fila,columna,fila-1,fila+1,columna-1,columna+2);   
         } 
      }else   if((fila-1)>-1){// si la fila de la ficha No es la primera Ni tamppoco la ultima
             if((columna+1)==8){// si la columna de la ficha es la ultima
-                movimientoRey(fila,columna,fila-1,fila+2,columna-1,columna+1);
+                movimientoRey(ficha,fila,columna,fila-1,fila+2,columna-1,columna+1);
             }else  if((columna-1)==-1){//si la columna de la ficha es la primera
-               movimientoRey(fila,columna,fila-1,fila+2,columna,columna+2);
+               movimientoRey(ficha,fila,columna,fila-1,fila+2,columna,columna+2);
             }else if((columna+1)<8){// si la columna de la ficha No es la ultima
-                movimientoRey(fila,columna,fila-1,fila+2,columna-1,columna+2);   
+                movimientoRey(ficha,fila,columna,fila-1,fila+2,columna-1,columna+2);   
             }     
         }else if((fila-1)==-1){// si la fila de la ficha es la primera
             if((columna+1)==8){// si la columna de la ficha es la ultima
-                movimientoRey(fila,columna,fila,fila+2,columna-1,columna+1);
+                movimientoRey(ficha,fila,columna,fila,fila+2,columna-1,columna+1);
             }else  if((columna-1)==-1){//si la columna de la ficha es la primera
-                movimientoRey(fila,columna,fila,fila+2,columna,columna+2);
+                movimientoRey(ficha,fila,columna,fila,fila+2,columna,columna+2);
             }else if((columna+1)<8){// si la columna de la ficha No es la ultima
-                movimientoRey(fila,columna,fila,fila+2,columna-1,columna+2);
+                movimientoRey(ficha,fila,columna,fila,fila+2,columna-1,columna+2);
             }
         }
      }else{
