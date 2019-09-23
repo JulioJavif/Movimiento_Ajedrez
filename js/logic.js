@@ -21,89 +21,144 @@ var tablero = [
 
 
 var CasillasSeleccionadas=[];
+var actual=0, pos_x, pos_y;
 
-function moverA(actual,nueva,f,c){//Mueve la ficha a su nueva posición
+function moverA(actual,nueva,f,c,nueva_f,nueva_c){//Mueve la ficha a su nueva posición
+    //console.log(f+":"+c);
+    console.log(tablero[f][c]);
     if(tablero[f][c]=='1B'){//Mira que ficha es la que se mueve y la coloca de su pos. actual a nueva
         for(var i=0;i<=CasillasSeleccionadas.length;i++){
-            if(CasillasSeleccionadas[i]==actual){
-                document.getElementById(actual).style.display = 'none';
+            if(CasillasSeleccionadas[i]==nueva){
+                //console.log('Está en el if');
+                tablero[f][c]=0;
+                tablero[nueva_f][nueva_c]='1B';
+                document.getElementById(actual).innerHTML = '';
+                document.getElementById(nueva).style.color = 'black';
+                DeselecionarCeldas();
                 document.getElementById(nueva).innerHTML = '&#9823;';
             }
         }
     }else if(tablero[f][c]=='2B'){
         for(var i=0;i<=CasillasSeleccionadas.length;i++){
-            if(CasillasSeleccionadas[i]==actual){
-                document.getElementById(actual).style.display = 'none';
+            if(CasillasSeleccionadas[i]==nueva){
+                tablero[f][c]=0;
+                tablero[nueva_f][nueva_c]='2B';
+                document.getElementById(actual).innerHTML = '';
+                document.getElementById(nueva).style.color = 'black';
+                DeselecionarCeldas();
                 document.getElementById(nueva).innerHTML = '&#9820;';
             }
         }
     }else if(tablero[f][c]=='3B'){
         for(var i=0;i<=CasillasSeleccionadas.length;i++){
-            if(CasillasSeleccionadas[i]==actual){
-                document.getElementById(actual).style.display = 'none';
+            if(CasillasSeleccionadas[i]==nueva){
+                tablero[f][c]=0;
+                tablero[nueva_f][nueva_c]='3B';
+                document.getElementById(actual).innerHTML = '';
+                document.getElementById(nueva).style.color = 'black';
+                DeselecionarCeldas();
                 document.getElementById(nueva).innerHTML = '&#9822;';
             }
         }
     }else if(tablero[f][c]=='4B'){
         for(var i=0;i<=CasillasSeleccionadas.length;i++){
-            if(CasillasSeleccionadas[i]==actual){
-                document.getElementById(actual).style.display = 'none';
+            if(CasillasSeleccionadas[i]==nueva){
+                tablero[f][c]=0;
+                tablero[nueva_f][nueva_c]='4B';
+                document.getElementById(actual).innerHTML = '';
+                document.getElementById(nueva).style.color = 'black';
+                DeselecionarCeldas();
                 document.getElementById(nueva).innerHTML = '&#9821;';
             }
         }
     }else if(tablero[f][c]=='5B'){
         for(var i=0;i<=CasillasSeleccionadas.length;i++){
-            if(CasillasSeleccionadas[i]==actual){
-                document.getElementById(actual).style.display = 'none';
+            if(CasillasSeleccionadas[i]==nueva){
+                tablero[f][c]=0;
+                tablero[nueva_f][nueva_c]='5B';
+                document.getElementById(actual).innerHTML = '';
+                document.getElementById(nueva).style.color = 'black';
+                DeselecionarCeldas();
                 document.getElementById(nueva).innerHTML = '&#9819;';
             }
         }
     }else if(tablero[f][c]=='6B'){
         for(var i=0;i<=CasillasSeleccionadas.length;i++){
-            if(CasillasSeleccionadas[i]==actual){
-                document.getElementById(actual).style.display = 'none';
+            if(CasillasSeleccionadas[i]==nueva){
+                tablero[f][c]=0;
+                tablero[nueva_f][nueva_c]='6B';
+                document.getElementById(actual).innerHTML = '';
+                document.getElementById(nueva).style.color = 'black';
+                DeselecionarCeldas();
                 document.getElementById(nueva).innerHTML = '&#9818;';
             }
         }
     }else if(tablero[f][c]=='1W'){
+        //console.log('es 1W');
         for(var i=0;i<=CasillasSeleccionadas.length;i++){
-            if(CasillasSeleccionadas[i]==actual){
-                document.getElementById(actual).style.display = 'none';
+            console.log(CasillasSeleccionadas[i])
+            if(CasillasSeleccionadas[i]==nueva){
+                //console.log('Encuentra la marcada');
+                tablero[f][c]=0;
+                tablero[nueva_f][nueva_c]='1W';
+                document.getElementById(actual).innerHTML = '';
+                document.getElementById(nueva).style.color = 'white';
+                DeselecionarCeldas();
                 document.getElementById(nueva).innerHTML = '&#9817;';
             }
         }
     }else if(tablero[f][c]=='2W'){
         for(var i=0;i<=CasillasSeleccionadas.length;i++){
-            if(CasillasSeleccionadas[i]==actual){
-                document.getElementById(actual).style.display = 'none';
+            if(CasillasSeleccionadas[i]==nueva){
+                tablero[f][c]=0;
+                tablero[nueva_f][nueva_c]='2W';
+                document.getElementById(actual).innerHTML = '';
+                document.getElementById(nueva).style.color = 'white';
+                DeselecionarCeldas();
                 document.getElementById(nueva).innerHTML = '&#9814;';
             }
         }
     }else if(tablero[f][c]=='3W'){
         for(var i=0;i<=CasillasSeleccionadas.length;i++){
-            if(CasillasSeleccionadas[i]==actual){
-                document.getElementById(actual).style.display = 'none';
+            if(CasillasSeleccionadas[i]==nueva){
+                tablero[f][c]=0;
+                tablero[nueva_f][nueva_c]='3W';
+                document.getElementById(actual).innerHTML = '';
+                document.getElementById(nueva).style.color = 'white';
+                DeselecionarCeldas();
                 document.getElementById(nueva).innerHTML = '&#9816;';
             }
         }
     }else if(tablero[f][c]=='4W'){
         for(var i=0;i<=CasillasSeleccionadas.length;i++){
-            if(CasillasSeleccionadas[i]==actual){
-                document.getElementById(actual).style.display = 'none';
+            if(CasillasSeleccionadas[i]==nueva){
+                tablero[f][c]=0;
+                tablero[nueva_f][nueva_c]='4W';
+                document.getElementById(actual).innerHTML = '';
+                document.getElementById(nueva).style.color = 'white';
+                DeselecionarCeldas();
                 document.getElementById(nueva).innerHTML = '&#9815;';
             }
         }
     }else if(tablero[f][c]=='5W'){
         for(var i=0;i<=CasillasSeleccionadas.length;i++){
-            if(CasillasSeleccionadas[i]==actual){
-                document.getElementById(actual).style.display = 'none';
+            if(CasillasSeleccionadas[i]==nueva){
+                tablero[f][c]=0;
+                tablero[nueva_f][nueva_c]='5W';
+                document.getElementById(actual).innerHTML = '';
+                document.getElementById(nueva).style.color = 'white';
+                DeselecionarCeldas();
                 document.getElementById(nueva).innerHTML = '&#9813;';
             }
         }
     }else if(tablero[f][c]=='6W'){
         for(var i=0;i<=CasillasSeleccionadas.length;i++){
-            if(CasillasSeleccionadas[i]==actual){
-                document.getElementById(actual).style.display = 'none';
+            if(CasillasSeleccionadas[i]==nueva){
+                tablero[f][c]=0;
+                tablero[nueva_f][nueva_c]='6W';
+                document.getElementById(actual).innerHTML = '';
+                document.getElementById(nueva).style.color = 'white';
+                DeselecionarCeldas();
                 document.getElementById(nueva).innerHTML = '&#9812;';
             }
         }
@@ -463,38 +518,67 @@ function mover(ficha,f,c){
 
 // al selecionar una celda se llama a esta funcion
 function selector(f, c){
-    var fila,columna;
+    //var fila,columna;
     //Habilitar para depurar por consola
     //console.log(tablero[f][c]);
     var cell = tablero[f][c];
     
-    if(cell=='1W'){
+    if(cell==0){
+        //console.log('Entra a moverA');
+        //console.log('c'+(f+1)+(c+1));
+        moverA(actual,'c'+(f+1)+(c+1),pos_x,pos_y,f,c);
+        //console.log('Sale de moverA');
+    }else if(cell=='1W'){
        // document.getElementById("c"+(f+1).toString()+(c+1).toString()).style.background = "rgba(61,217,80,0.7)";
        // limpiarTabla(f,c);
-        
         mover('1W',f,c);
+        actual='c'+(f+1)+(c+1);
+        pos_x=f;pos_y=c;
+        //console.log(f+":"+c+">>>"+actual);
     }else if(cell=='1B'){
         mover('1B',f,c);
+        actual='c'+(f+1)+(c+1);
+        pos_x=f;pos_y=c;
     }else if(cell=='2W'){
         mover('2W',f,c);
+        actual='c'+(f+1)+(c+1);
+        pos_x=f;pos_y=c;
     }else if(cell=='2B'){
         mover('2B',f,c);
+        actual='c'+(f+1)+(c+1);
+        pos_x=f;pos_y=c;
     }else if(cell=='3W'){
         mover('3W',f,c);
+        actual='c'+(f+1)+(c+1);
+        pos_x=f;pos_y=c;
     }else if(cell=='3B'){
         mover('3B',f,c);
+        actual='c'+(f+1)+(c+1);
+        pos_x=f;pos_y=c;
     }else if(cell=='4W'){
         mover('4W',f,c);
+        actual='c'+(f+1)+(c+1);
+        pos_x=f;pos_y=c;
     }else if(cell=='4B'){
         mover('4B',f,c);
+        actual='c'+(f+1)+(c+1);
+        pos_x=f;pos_y=c;
     }else if(cell=='5W'){
         mover('5W',f,c);
+        actual='c'+(f+1)+(c+1);
+        pos_x=f;pos_y=c;
     }else if(cell=='5B'){
         mover('5B',f,c);
+        actual='c'+(f+1)+(c+1);
+        pos_x=f;pos_y=c;
     }else if(cell=='6W'){
         mover('6W',f,c);
+        actual='c'+(f+1)+(c+1);
+        pos_x=f;pos_y=c;
     }else if(cell=='6B'){
         mover('6B',f,c);
+        actual='c'+(f+1)+(c+1);
+        pos_x=f;pos_y=c;
     }else{
         //Habiltar en casi que no guarde 0
         //console.log('No hay fichas en '+f+','+c);
