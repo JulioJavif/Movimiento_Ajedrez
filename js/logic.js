@@ -22,6 +22,94 @@ var tablero = [
 
 var CasillasSeleccionadas=[];
 
+function moverA(actual,nueva,f,c){//Mueve la ficha a su nueva posición
+    if(tablero[f][c]=='1B'){//Mira que ficha es la que se mueve y la coloca de su pos. actual a nueva
+        for(var i=0;i<=CasillasSeleccionadas.length;i++){
+            if(CasillasSeleccionadas[i]==actual){
+                document.getElementById(actual).style.display = 'none';
+                document.getElementById(nueva).innerHTML = '&#9823;';
+            }
+        }
+    }else if(tablero[f][c]=='2B'){
+        for(var i=0;i<=CasillasSeleccionadas.length;i++){
+            if(CasillasSeleccionadas[i]==actual){
+                document.getElementById(actual).style.display = 'none';
+                document.getElementById(nueva).innerHTML = '&#9820;';
+            }
+        }
+    }else if(tablero[f][c]=='3B'){
+        for(var i=0;i<=CasillasSeleccionadas.length;i++){
+            if(CasillasSeleccionadas[i]==actual){
+                document.getElementById(actual).style.display = 'none';
+                document.getElementById(nueva).innerHTML = '&#9822;';
+            }
+        }
+    }else if(tablero[f][c]=='4B'){
+        for(var i=0;i<=CasillasSeleccionadas.length;i++){
+            if(CasillasSeleccionadas[i]==actual){
+                document.getElementById(actual).style.display = 'none';
+                document.getElementById(nueva).innerHTML = '&#9821;';
+            }
+        }
+    }else if(tablero[f][c]=='5B'){
+        for(var i=0;i<=CasillasSeleccionadas.length;i++){
+            if(CasillasSeleccionadas[i]==actual){
+                document.getElementById(actual).style.display = 'none';
+                document.getElementById(nueva).innerHTML = '&#9819;';
+            }
+        }
+    }else if(tablero[f][c]=='6B'){
+        for(var i=0;i<=CasillasSeleccionadas.length;i++){
+            if(CasillasSeleccionadas[i]==actual){
+                document.getElementById(actual).style.display = 'none';
+                document.getElementById(nueva).innerHTML = '&#9818;';
+            }
+        }
+    }else if(tablero[f][c]=='1W'){
+        for(var i=0;i<=CasillasSeleccionadas.length;i++){
+            if(CasillasSeleccionadas[i]==actual){
+                document.getElementById(actual).style.display = 'none';
+                document.getElementById(nueva).innerHTML = '&#9817;';
+            }
+        }
+    }else if(tablero[f][c]=='2W'){
+        for(var i=0;i<=CasillasSeleccionadas.length;i++){
+            if(CasillasSeleccionadas[i]==actual){
+                document.getElementById(actual).style.display = 'none';
+                document.getElementById(nueva).innerHTML = '&#9814;';
+            }
+        }
+    }else if(tablero[f][c]=='3W'){
+        for(var i=0;i<=CasillasSeleccionadas.length;i++){
+            if(CasillasSeleccionadas[i]==actual){
+                document.getElementById(actual).style.display = 'none';
+                document.getElementById(nueva).innerHTML = '&#9816;';
+            }
+        }
+    }else if(tablero[f][c]=='4W'){
+        for(var i=0;i<=CasillasSeleccionadas.length;i++){
+            if(CasillasSeleccionadas[i]==actual){
+                document.getElementById(actual).style.display = 'none';
+                document.getElementById(nueva).innerHTML = '&#9815;';
+            }
+        }
+    }else if(tablero[f][c]=='5W'){
+        for(var i=0;i<=CasillasSeleccionadas.length;i++){
+            if(CasillasSeleccionadas[i]==actual){
+                document.getElementById(actual).style.display = 'none';
+                document.getElementById(nueva).innerHTML = '&#9813;';
+            }
+        }
+    }else if(tablero[f][c]=='6W'){
+        for(var i=0;i<=CasillasSeleccionadas.length;i++){
+            if(CasillasSeleccionadas[i]==actual){
+                document.getElementById(actual).style.display = 'none';
+                document.getElementById(nueva).innerHTML = '&#9812;';
+            }
+        }
+    }
+}
+
 //Movimiento de la Torre
 function movimientoTorre(f,c){
     for(var v=(c+1); v<8; v++){
