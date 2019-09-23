@@ -72,7 +72,6 @@ function  movimientoAlfil(f,c){
             }                           
         }
   // movimiento del alfil a la izquierda y arriba
- 
    for(var i=(fila-1);i>-1;i--){
       columnaIzq--;
        if(columnaIzq>-1){
