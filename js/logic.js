@@ -9,14 +9,14 @@
  6 = Rey
 */
 var tablero = [
-    [ '6W', '3B', '4B', '5B', '6B', '4B', '3B', '6W'],
+    [ '2W', '3B', '4B', '5B', '6B', '4B', '3B', '2W'],
     [ '1B', '1B', '1B', '1B', '1B', '1B', '1B', '1B'],
     [ 0, 0, 0, 0, 0, 0, 0, 0],
     [ 0, 0, 0, 0, 0, 0, 0, 0],
-    [ 0, 0, 0, 0, 0, 0, 0, 0],
-    [ 0, 0, 0, 0, 0, 0, 0, 0],
+    [ 0, 0, , 0, 0, 0, 0, 0],
+    [ 0, 0, '1B', 0, 0, 0, 0, 0],
     [ '1W', '1W', '1W', '1W', '1W', '1W', '1W', '1W'],
-    [ '6W', '3W', '4W', '5W', '6W', '4W', '3W', '6W']
+    [ '2W', '3W', '4W', '5W', '6W', '4W', '3W', '2W']
 ];
 // var posible_mov = [
 //     [ 0, 0, 0, 0, 0, 0, 0, 0],
@@ -34,17 +34,33 @@ var CasillasSeleccionadas;
 //Movimiento de la Torre
 function movimientoTorre(f,c){
     for(var v=(c+1); v<8; v++){
-        document.getElementById("c"+(f+1).toString()+(v+1).toString()).style.background = "rgba(61,217,80,0.7)";
+        if(tablero[f][v]!=0){
+            document.getElementById("c"+(f+1).toString()+(v+1).toString()).style.background = "rgba(255,0,0,0.7)";
+        }else{
+            document.getElementById("c"+(f+1).toString()+(v+1).toString()).style.background = "rgba(61,217,80,0.7)";
+        }
     }
     // movimientos de la torre ala izquierda
     for(var v=(c-1); v>-1; v--){
-        document.getElementById("c"+(f+1).toString()+(v+1).toString()).style.background = "rgba(61,217,80,0.7)";
+        if(tablero[f][v]!=0){
+            document.getElementById("c"+(f+1).toString()+(v+1).toString()).style.background = "rgba(255,0,0,0.7)";
+        }else{
+            document.getElementById("c"+(f+1).toString()+(v+1).toString()).style.background = "rgba(61,217,80,0.7)";
+        }
     }
     for(var h=(f+1); h<8; h++){
-        document.getElementById("c"+(h+1).toString()+(c+1).toString()).style.background = "rgba(61,217,80,0.7)";
+        if(tablero[h][c]!=0){
+            document.getElementById("c"+(h+1).toString()+(c+1).toString()).style.background = "rgba(255,0,0,0.7)";
+        }else{
+            document.getElementById("c"+(h+1).toString()+(c+1).toString()).style.background = "rgba(61,217,80,0.7)";
+        }
     }
     for(var h=(f-1); h>-1; h--){
-        document.getElementById("c"+(h+1).toString()+(c+1).toString()).style.background = "rgba(61,217,80,0.7)";
+        if(tablero[h][c]!=0){
+            document.getElementById("c"+(h+1).toString()+(c+1).toString()).style.background = "rgba(255,0,0,0.7)";
+        }else{
+            document.getElementById("c"+(h+1).toString()+(c+1).toString()).style.background = "rgba(61,217,80,0.7)";
+        }
     }
 }
 function  movimientoAlfil(f,c){
@@ -54,7 +70,11 @@ function  movimientoAlfil(f,c){
         for(var i=(fila-1);i>-1;i--){
             columnaDer++;
             if(columnaDer<8){
-                document.getElementById("c"+(i+1).toString()+(columnaDer+1).toString()).style.background = "rgba(61,217,80,0.7)";
+                if(tablero[i][columnaDer]){
+                    document.getElementById("c"+(i+1).toString()+(columnaDer+1).toString()).style.background = "rgba(255,0,0,0.7)";
+                }else{
+                    document.getElementById("c"+(i+1).toString()+(columnaDer+1).toString()).style.background = "rgba(61,217,80,0.7)";
+                }
             }else{
                 i=-1;
             }                           
@@ -64,7 +84,12 @@ function  movimientoAlfil(f,c){
    for(var i=(fila-1);i>-1;i--){
       columnaIzq--;
        if(columnaIzq>-1){
-        document.getElementById("c"+(i+1).toString()+(columnaIzq+1).toString()).style.background = "rgba(61,217,80,0.7)";
+           if(tablero[i][columnaIzq]){
+            document.getElementById("c"+(i+1).toString()+(columnaIzq+1).toString()).style.background = "rgba(255,0,0,0.7)";
+           }else{
+            document.getElementById("c"+(i+1).toString()+(columnaIzq+1).toString()).style.background = "rgba(61,217,80,0.7)";
+           }
+        
        }else{
         i=-1;
        }                           
@@ -75,7 +100,11 @@ function  movimientoAlfil(f,c){
      for(var i=(fila+1);i<8;i++){
      columnaDer++;
       if(columnaDer<8){
-       document.getElementById("c"+(i+1).toString()+(columnaDer+1).toString()).style.background = "rgba(61,217,80,0.7)";
+          if(tablero[i][columnaDer]!=0){
+            document.getElementById("c"+(i+1).toString()+(columnaDer+1).toString()).style.background = "rgba(255,0,0,0.7)";
+          }else{
+            document.getElementById("c"+(i+1).toString()+(columnaDer+1).toString()).style.background = "rgba(61,217,80,0.7)";
+          }
       }else{
        i=8;
       }                           
@@ -85,7 +114,12 @@ function  movimientoAlfil(f,c){
   for(var i=(fila+1);i<8;i++){
     columnaIzq--;
      if(columnaIzq>-1){
-      document.getElementById("c"+(i+1).toString()+(columnaIzq+1).toString()).style.background = "rgba(61,217,80,0.7)";
+         if(tablero[i][columnaIzq]!=0){
+            document.getElementById("c"+(i+1).toString()+(columnaIzq+1).toString()).style.background = "rgba(255,0,0,0.7)";
+         }else{
+            document.getElementById("c"+(i+1).toString()+(columnaIzq+1).toString()).style.background = "rgba(61,217,80,0.7)";
+         }
+      
      }else{
       i=8;
      }                           
@@ -95,8 +129,12 @@ function  movimientoAlfil(f,c){
 function movimientoRey(fila,columna,minfila,maxfila,mincol,maxcol){
     for(var i=minfila;i<maxfila;i++){         
         for(var k=mincol;k<maxcol;k++){
-            if(i!=fila || k!=columna){                      
-                document.getElementById("c"+(i+1).toString()+(k+1).toString()).style.background = "rgba(61,217,80,0.7)";
+            if(i!=fila || k!=columna){
+                if(tablero[i][k]!=0){
+                    document.getElementById("c"+(i+1).toString()+(k+1).toString()).style.background = "rgba(255,0,0,0.7)";
+                }else{
+                    document.getElementById("c"+(i+1).toString()+(k+1).toString()).style.background = "rgba(61,217,80,0.7)";
+                }                      
             }
             
         }            
@@ -108,37 +146,72 @@ function movimientoCaballo( f, c){
         fila-=2;
         if(fila>=0 && fila<=7){
             if(c+1<8){
-                document.getElementById("c"+(fila+1).toString()+(c+2).toString()).style.background = "rgba(61,217,80,0.7)";
+                if(tablero[fila][c+1]!=0){
+                    document.getElementById("c"+(fila+1).toString()+(c+2).toString()).style.background = "rgba(255,0,0,0.7)";
+                }else{
+                    document.getElementById("c"+(fila+1).toString()+(c+2).toString()).style.background = "rgba(61,217,80,0.7)";
+                }
             }
             if(c>-1){
-                document.getElementById("c"+(fila+1).toString()+(c).toString()).style.background = "rgba(61,217,80,0.7)";
+                if(tablero[fila][c]!=0){
+                    document.getElementById("c"+(fila+1).toString()+(c).toString()).style.background = "rgba(255,0,0,0.7)";
+                }else{
+                    document.getElementById("c"+(fila+1).toString()+(c).toString()).style.background = "rgba(61,217,80,0.7)";
+                }
             }
         }
         fila=f;fila+=2;
         if(fila>=0 && fila<=7){
             if(c+1<8){
-                document.getElementById("c"+(fila+1).toString()+(c+2).toString()).style.background = "rgba(61,217,80,0.7)";
+                if(tablero[fila][c+1]){
+                    document.getElementById("c"+(fila+1).toString()+(c+2).toString()).style.background = "rgba(255,0,0,0.7)";
+                }else{
+                    document.getElementById("c"+(fila+1).toString()+(c+2).toString()).style.background = "rgba(61,217,80,0.7)";
+                }
+                
             }
             if(c>-1){
-                document.getElementById("c"+(fila+1).toString()+(c).toString()).style.background = "rgba(61,217,80,0.7)";
+                if(tablero[fila][c]!=0){
+                    document.getElementById("c"+(fila+1).toString()+(c).toString()).style.background = "rgba(255,0,0,0.7)";
+                }else{
+                    document.getElementById("c"+(fila+1).toString()+(c).toString()).style.background = "rgba(61,217,80,0.7)";
+                }
             }            
         }
         columna-=2;
         if(columna<=7 && columna>=0){
             if(f>0){
-                document.getElementById("c"+(f).toString()+(columna+1).toString()).style.background = "rgba(61,217,80,0.7)";
+                if(tablero[f][columna]){
+                    document.getElementById("c"+(f).toString()+(columna+1).toString()).style.background = "rgba(255,0,0,0.7)";
+                }else{
+                    document.getElementById("c"+(f).toString()+(columna+1).toString()).style.background = "rgba(61,217,80,0.7)";
+                } 
             }
             if(f+1<8){
-                document.getElementById("c"+(f+2).toString()+(columna+1).toString()).style.background = "rgba(61,217,80,0.7)";
+                if(tablero[f+1][columna]){
+                    document.getElementById("c"+(f+2).toString()+(columna+1).toString()).style.background = "rgba(255,0,0,0.7)";
+                }else{
+                    document.getElementById("c"+(f+2).toString()+(columna+1).toString()).style.background = "rgba(61,217,80,0.7)";
+                }
+                
             }
         }
         columna=c;columna+=2;
         if(columna<=7 && columna>=0){
             if(f>0){
-                document.getElementById("c"+(f).toString()+(columna+1).toString()).style.background = "rgba(61,217,80,0.7)";
+                if(tablero[f][columna]!=0){
+                    document.getElementById("c"+(f).toString()+(columna+1).toString()).style.background = "rgba(255,0,0,0.7)";
+                }else{
+                    document.getElementById("c"+(f).toString()+(columna+1).toString()).style.background = "rgba(61,217,80,0.7)";
+                }
             }
             if(f+1<8){
-                document.getElementById("c"+(f+2).toString()+(columna+1).toString()).style.background = "rgba(61,217,80,0.7)";
+                if(tablero[f+1][columna]!=0){
+                    document.getElementById("c"+(f+2).toString()+(columna+1).toString()).style.background = "rgba(255,0,0,0.7)";
+                }else{
+                    document.getElementById("c"+(f+2).toString()+(columna+1).toString()).style.background = "rgba(61,217,80,0.7)";
+                }
+                
             }
         }
 }
@@ -177,6 +250,7 @@ function mover(ficha,f,c){
         if(f!=1){
             f++;
             var celda="c"+(f+1)+(c+1);
+            console.log(celda);
             if(tablero[f][c]!=0){
                 document.getElementById(celda).style.background = "rgba(255,0,0,0.7)";
             }else{
