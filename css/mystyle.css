@@ -37,3 +37,16 @@
   color: #fff;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, .6);
 }
+
+#index-banner{
+  background-image: url("../img/Chess_wallpaper.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.github img{
+  width: 70%;
+  height: 70%;
+  margin: 0px auto;
+  vertical-align: middle;
+}
