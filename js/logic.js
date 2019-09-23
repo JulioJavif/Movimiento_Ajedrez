@@ -13,7 +13,7 @@ var tablero = [
     [ '1B', '1B', '1B', '1B', '1B', '1B', '1B', '1B'],
     [ 0, 0, 0, 0, 0, 0, 0, 0],
     [ 0, 0, 0, 0, 0, 0, 0, 0],
-    [ '6W', 0, 0, '6W', 0, 0, 0, '6W'],
+    [ 0, 0, 0, 0, 0, 0, 0, 0],
     [ 0, 0, 0, 0, 0, 0, 0, 0],
     [ '1W', '1W', '1W', '1W', '1W', '1W', '1W', '1W'],
     [ '6W', '3W', '4W', '5W', '6W', '4W', '3W', '6W']
@@ -152,29 +152,55 @@ function mover(ficha,f,c){
         if(f!=6){// si el peon no esta en la fila 6: entonces puede dar solo un paso
             f--;
             var celda="c"+(f+1)+(c+1);
-            document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
+            if(tablero[f][c]!=0){
+                document.getElementById(celda).style.background = "rgba(255,0,0,0.7)";
+            }else{
+                document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
+            }
         }else{// si no  puede dar 2 pasos
             f--;
             var celda="c"+(f+1)+(c+1);
-            document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
+            if(tablero[f][c]!=0){
+                document.getElementById(celda).style.background = "rgba(255,0,0,0.7)";
+            }else{
+                document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
+            }
             f--;
             var celda="c"+(f+1)+(c+1);
-            document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
+            if(tablero[f][c]!=0){
+                document.getElementById(celda).style.background = "rgba(255,0,0,0.7)";
+            }else{
+                document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
+            }
         }
     }else if(ficha=='1B'){
         if(f!=1){
             f++;
             var celda="c"+(f+1)+(c+1);
-            document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
+            if(tablero[f][c]!=0){
+                document.getElementById(celda).style.background = "rgba(255,0,0,0.7)";
+            }else{
+                document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
+            }
            //  CasillasSeleccionadas.push(celda);
         }else{
             f++;
             var celda="c"+(f+1)+(c+1);
-            document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
+            if(tablero[f][c]!=0){
+                document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
+            }
+            else{
+                document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
+            }
            //CasillasSeleccionadas.push(celda);
             f++;
             var celda="c"+(f+1)+(c+1);
-            document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
+            if(tablero[f][c]!=0){
+                document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
+            }
+            else{
+                document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
+            }
            // CasillasSeleccionadas.push(celda);
         }
     // -------selecionando la torre ------
