@@ -11,35 +11,37 @@
 var tablero = [
     [ '2B', '3B', '4B',0, '6B', '4B', '3B', '2B'],
     [ '1B', '1B', '1B', '1B', '1B', '1B', '1B', '1B'],
-    [ 0, 0, '6W', 0, 0, 0, 0, 0],
+    [ 0, 0, '6W', 0, 0, '1W', 0, 0],
     [ 0, 0, 0, '2B', 0, '3B', 0, '5W'],
-    [ 0, 0, 0, '4B', '6W', 0, 0, 0],
-    [ 0, 0, '3W', 0, 0, 0, 0, 0],
+    [ 0, 0, '3W','4B', '6W', 0, 0, 0],
+    [ 0, 0, 0, 0, 0, '4B', 0, 0],
     [ '1W', '1W', '1W', '1W', '1W', '1W', '1W', '1W'],
     [ '2W', '3W', '4W', '5W', '6W', '4W', '3W', '2W']
 ];
 
 
 var CasillasSeleccionadas=[];
-
 function DetectarFichasEnemigas(TipoFicha,celda,fila,columna){
     var ficha;
+    
     ficha=tablero[fila][columna];
     if(ficha!=0){// si hay una ficha
         if(ficha.charAt(1)!=TipoFicha.charAt(1)){// si la ficha es enemiga
             document.getElementById(celda).style.background = "rgba(255,0,0,0.7)";// pinto rojo
             CasillasSeleccionadas.push(celda);
-            return 1;
-        }else{ // si la ficha es amiga
-            return 1;
-
+            
         }
-       
+         return 1;
     }else{// si no hay una ficha
-        document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";// pinto verde la celda
-        CasillasSeleccionadas.push(celda);
+            document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";// pinto verde la celda
+            CasillasSeleccionadas.push(celda);
+        
+        
     }
 }
+
+
+
 //Movimiento de la Torre
 function movimientoTorre(ficha,f,c){
     // torre a la derecha 
@@ -146,23 +148,21 @@ function movimientoRey(ficha,fila,columna,minfila,maxfila,mincol,maxcol,numMax){
     }
 }
 
-function DetectarFichasEnemigasCaballo(ficha,celda,fila,columna){
+function DetectarFichasEnemigasCaballo(ficha,celda){
     var fichaPresa=[];
-    //  alert(fila);
-    //  alert(columna);
-    alert(tablero[fila][columna]);
-    // alert(fichaPresa.charAt(1));
-    // alert(fichaPresa.charAt(2));
-    // if(celda!=0){// si hay una ficha
-    //     if(ficha.charAt(1)!=fichaPresa.charAt(1)){// si la ficha es enemiga
-    //         document.getElementById(celda).style.background = "rgba(255,0,0,0.7)";// pinto rojo
-    //         CasillasSeleccionadas.push(celda);
-    //     }
-
-    // }else{// si no hay una ficha
-    //     document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";// pinto verde la celda
-    //     CasillasSeleccionadas.push(celda);
-    // }
+ 
+    fichaPresa=tablero[(celda.charAt(1)-1)][(celda.charAt(2)-1)];
+    
+    if(fichaPresa!=0){// si hay una ficha
+        if(ficha.charAt(1)!=fichaPresa.charAt(1)){// si la ficha es enemiga
+            document.getElementById(celda).style.background = "rgba(255,0,0,0.7)";// pinto rojo
+            CasillasSeleccionadas.push(celda);
+        }
+    }else{// si no hay ficha
+        document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";// pinto verde la celda
+        CasillasSeleccionadas.push(celda);
+    }
+    
 }
 //Movimiento posible de caballo
 function movimientoCaballo(ficha,f, c){
@@ -171,45 +171,87 @@ function movimientoCaballo(ficha,f, c){
         if(fila>=0 && fila<=7){
             if(c+1<8){//  derecha
                 var celda="c"+(fila+1)+(c+2);
-                DetectarFichasEnemigasCaballo(ficha,celda,fila,c);
+                DetectarFichasEnemigasCaballo(ficha,celda);
                 
             }
-            // if(c>-1){// izquierda
-            //     var celda="c"+(fila+1)+(c);
-            //     DetectarFichasEnemigasCaballo(ficha,celda);
+            if(c>-1){// izquierda
+                var celda="c"+(fila+1)+(c);
+                DetectarFichasEnemigasCaballo(ficha,celda);
 
-            // }
+            }
         }
-        // fila=f;fila+=2;//Caballo hacia abajo largo
-        // if(fila>=0 && fila<=7){
-        //     if(c+1<8){//derecha
-        //         var celda="c"+(fila+1)+(c+2);
-        //         DetectarFichasEnemigasCaballo(ficha,celda);
-        //     }
-        //     if(c>-1){// izquierda
-        //         var celda="c"+(fila+1)+(c);
-        //         DetectarFichasEnemigasCaballo(ficha,celda);            }            
-        // }
-        // columna-=2;//Caballo hacia la izquierda
-        // if(columna<=7 && columna>=0){
-        //     if(f>0){//arriba
-        //         var celda="c"+(f)+(columna+1);
-        //         DetectarFichasEnemigasCaballo(ficha,celda);            }
-        //     if(f+1<8){// abajo
-        //         var celda="c"+(f+2)+(columna+1);
-        //         DetectarFichasEnemigasCaballo(ficha,celda);            }
-        // }
-        // columna=c;columna+=2;//hacia la derecha 
-        // if(columna<=7 && columna>=0){
-        //     if(f>0){// arriba
-        //         var celda="c"+(f)+(columna+1);
-        //         DetectarFichasEnemigasCaballo(ficha,celda);            }
-        //     if(f+1<8){//
-        //         var celda="c"+(f+2)+(columna+1);
-        //         DetectarFichasEnemigasCaballo(ficha,celda);            }
-        // }
+        fila=f;fila+=2;//Caballo hacia abajo largo
+        if(fila>=0 && fila<=7){
+            if(c+1<8){//derecha
+                var celda="c"+(fila+1)+(c+2);
+                DetectarFichasEnemigasCaballo(ficha,celda);
+            }
+            if(c>-1){// izquierda
+                var celda="c"+(fila+1)+(c);
+                DetectarFichasEnemigasCaballo(ficha,celda);            }            
+        }
+        columna-=2;//Caballo hacia la izquierda
+        if(columna<=7 && columna>=0){
+            if(f>0){//arriba
+                var celda="c"+(f)+(columna+1);
+                DetectarFichasEnemigasCaballo(ficha,celda);            }
+            if(f+1<8){// abajo
+                var celda="c"+(f+2)+(columna+1);
+                DetectarFichasEnemigasCaballo(ficha,celda);            }
+        }
+        columna=c;columna+=2;//Caballo hacia la derecha 
+        if(columna<=7 && columna>=0){
+            if(f>0){// arriba
+                var celda="c"+(f)+(columna+1);
+                DetectarFichasEnemigasCaballo(ficha,celda);            }
+            if(f+1<8){//
+                var celda="c"+(f+2)+(columna+1);
+                DetectarFichasEnemigasCaballo(ficha,celda);            }
+        }
+}
+function  DetectFichasEnemyPeonInFront(TipoFicha,CeldaInFront,fila,columna){
+    var celda;
+    if(CeldaInFront!=0){// si hay una ficha enfrente  
+           if(CeldaInFront.charAt(1)!=TipoFicha){// si es una ficha enemiga
+                   return 1;
+           }
+    }else{// si no hay ficha 
+         celda="c"+(fila+1)+(columna+1);
+         document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";// pinto verde la celda
+         CasillasSeleccionadas.push(celda);
+    }
 }
 
+function DefinirBandoPeon(TipoFicha,CeldaNextTo,fila,columna){
+    var celda=[];
+    celda="c"+(fila+1)+(columna+1);
+     if(CeldaNextTo!=0){// si hay una ficha al lado  
+        if(CeldaNextTo.charAt(1)!=TipoFicha){// si es enemiga 
+                    
+            document.getElementById(celda).style.background = "rgba(255,0,0,0.7)";// pinto rojo
+            CasillasSeleccionadas.push(celda);            
+        }
+    }
+}
+// fichas al lado del peon
+function DetectFichasEnemyPeonNextTo(TipoFicha,fila,columna,uno){
+    var CeldaNextTo;
+    if(fila+uno>-1){// si tiene filas hacia arriba
+          
+        if(columna+1<8){// si tiene columna a la derrecha
+            
+            CeldaNextTo= tablero[fila+uno][columna+1]; 
+                     
+             DefinirBandoPeon(TipoFicha,CeldaNextTo,fila+uno,columna+1);
+        }
+        if(columna-1>-1){
+             CeldaNextTo= tablero[fila+uno][columna-1]; 
+            
+            DefinirBandoPeon(TipoFicha,CeldaNextTo,fila+uno,columna-1);
+        }
+        
+    }  
+}
 function DeselecionarCeldas(){
     for(var i=0;i<CasillasSeleccionadas.length;i++){
         fila=CasillasSeleccionadas[i].charAt(1);
@@ -238,39 +280,46 @@ function DeselecionarCeldas(){
 }
 function mover(ficha,f,c){
     DeselecionarCeldas();
-    if(ficha=='1W'){
-        if(f!=6){// si el peon no esta en la fila 6: entonces puede dar solo un paso
-            f--;
-            var celda="c"+(f+1)+(c+1);
-            document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
-            CasillasSeleccionadas.push(celda);
+    var fila=f,columna=c;
+    if(ficha=='1W'){// selecionando peon
+        if(fila!=6){// si el peon no esta en la fila 6: entonces puede dar solo un paso
+            fila--;
+            var CeldaInFront=[fila][columna];
+            DetectFichasEnemyPeonNextTo('W',f,c,-1);
+            DetectFichasEnemyPeonInFront('W',CeldaInFront,fila,columna);
             
 
-        }else{// si no  puede dar 2 pasos
-            f--;
-            var celda="c"+(f+1)+(c+1);
-            document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
-            CasillasSeleccionadas.push(celda);
-            f--;
-            var celda="c"+(f+1)+(c+1);
-            document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
-            CasillasSeleccionadas.push(celda);
+        }else{// si no,  puede dar 2 pasos
+            fila--;
+            var CeldaInFront=tablero[fila][columna];
+            DetectFichasEnemyPeonNextTo('W',f,c,-1);
+           if(DetectFichasEnemyPeonInFront('W',CeldaInFront,fila,columna)!=1){// si no hay casilla enfrente
+            fila--;
+            var CeldaInFront=tablero[fila][columna];
+            DetectFichasEnemyPeonInFront('W',CeldaInFront,fila,columna);
+           
+           }
+        
         }
-    }else if(ficha=='1B'){
-        if(f!=1){
-            f++;
-            var celda="c"+(f+1)+(c+1);
-            document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
-             CasillasSeleccionadas.push(celda);
+        
+    }else if(ficha=='1B'){// peon negro
+        if(fila!=1){
+            fila++;
+            var celda="c"+(fila+1)+(columna+1);
+            DetectFichasEnemyPeonNextTo('B',f,c,-1);
+            DetectarFichasEnemigas(ficha,celda,fila,columna);
         }else{
-            f++;
-            var celda="c"+(f+1)+(c+1);
-            document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
-             CasillasSeleccionadas.push(celda);
-            f++;
-            var celda="c"+(f+1)+(c+1);
-            document.getElementById(celda).style.background = "rgba(61,217,80,0.7)";
-              CasillasSeleccionadas.push(celda);
+           
+            fila++;
+            var CeldaInFront=tablero[fila][columna];
+            
+            DetectFichasEnemyPeonNextTo('B',f,c,1);
+           if(DetectFichasEnemyPeonInFront('B',CeldaInFront,fila,columna)!=1){// si no hay casilla enfrente
+            fila++;
+            var CeldaInFront=tablero[fila][columna];
+            DetectFichasEnemyPeonInFront('B',CeldaInFront,fila,columna);
+           
+           }
         
         }
         
@@ -329,8 +378,7 @@ function selector(f, c){
     var cell = tablero[f][c];
     
     if(cell=='1W'){
-       // document.getElementById("c"+(f+1).toString()+(c+1).toString()).style.background = "rgba(61,217,80,0.7)";
-       // limpiarTabla(f,c);
+       
         
         mover('1W',f,c);
     }else if(cell=='1B'){
