@@ -236,7 +236,7 @@ function DefinirBandoPeon(TipoFicha,CeldaNextTo,fila,columna){
 // fichas al lado del peon
 function DetectFichasEnemyPeonNextTo(TipoFicha,fila,columna,uno){
     var CeldaNextTo;
-    if(fila+uno>-1){// si tiene filas hacia arriba
+    if(fila+uno>-1 && fila+uno<8){// si tiene filas hacia arriba
           
         if(columna+1<8){// si tiene columna a la derrecha
             
